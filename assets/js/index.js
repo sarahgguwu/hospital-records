@@ -1,10 +1,9 @@
 
-
-
+//add user
 $("#add_user").submit(function(event){
     alert("New patient created successfully!");
 })
-
+//uppdare user
 $("#update_user").submit(function(event){
     event.preventDefault();
 
@@ -15,7 +14,7 @@ $("#update_user").submit(function(event){
         data[n['name']] = n['value']
     })
 
-
+//perform put request on API running on local server
     var request = {
         "url" : `http://localhost:80/api/users/${data.id}`,
         "method" : "PUT",
@@ -27,7 +26,7 @@ $("#update_user").submit(function(event){
     })
 
 })
-
+//ask user for confirmation of deletion from table
 if(window.location.pathname == "/"){
     $ondelete = $(".table tbody td a.delete");
     $ondelete.click(function(){
