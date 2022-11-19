@@ -25,7 +25,7 @@ exports.create = (req,res)=>{
         })
         .catch(err =>{
             res.status(500).send({
-                message : err.message || "Some error occurred while creating a create operation"
+                message : err.message || "Error"
             });
         });
 
@@ -40,13 +40,13 @@ exports.find = (req, res)=>{
         Userdb.findById(id)
             .then(data =>{
                 if(!data){
-                    res.status(404).send({ message : "Not found user with id "+ id})
+                    res.status(404).send({ message : "No user with "+ id})
                 }else{
                     res.send(data)
                 }
             })
             .catch(err =>{
-                res.status(500).send({ message: "Erro retrieving user with id " + id})
+                res.status(500).send({ message: "Error retrieving " + id})
             })
 
     }else{
@@ -67,20 +67,20 @@ exports.update = (req, res)=>{
     if(!req.body){
         return res
             .status(400)
-            .send({ message : "Data to update can not be empty"})
+            .send({ message : "Cannot be empty"})
     }
 
     const id = req.params.id;
     Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
-                res.status(404).send({ message : `Cannot Update user with ${id}. Maybe user not found!`})
+                res.status(404).send({ message : `Cannot Update user  ${id}. user not found!`})
             }else{
                 res.send(data)
             }
         })
         .catch(err =>{
-            res.status(500).send({ message : "Error Update user information"})
+            res.status(500).send({ message : "Error updating user information"})
         })
 }
 
@@ -91,16 +91,16 @@ exports.delete = (req, res)=>{
     Userdb.findByIdAndDelete(id)
         .then(data => {
             if(!data){
-                res.status(404).send({ message : `Cannot Delete with id ${id}. Maybe id is wrong`})
+                res.status(404).send({ message : `Cannot Delete  id ${id}. `})
             }else{
                 res.send({
-                    message : "User was deleted successfully!"
+                    message : "Patient was deleted successfully!"
                 })
             }
         })
         .catch(err =>{
             res.status(500).send({
-                message: "Could not delete User with id=" + id
+                message: "Could not delete patient with id=" + id
             });
         });
 }

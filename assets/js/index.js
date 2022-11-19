@@ -2,7 +2,7 @@
 
 
 $("#add_user").submit(function(event){
-    alert("Data Inserted Successfully!");
+    alert("New patient created successfully!");
 })
 
 $("#update_user").submit(function(event){
@@ -17,13 +17,13 @@ $("#update_user").submit(function(event){
 
 
     var request = {
-        "url" : `http://localhost:3000/api/users/${data.id}`,
+        "url" : `http://localhost:80/api/users/${data.id}`,
         "method" : "PUT",
         "data" : data
     }
 
     $.ajax(request).done(function(response){
-        alert("Data Updated Successfully!");
+        alert("Patient Updated Successfully!");
     })
 
 })
@@ -34,13 +34,13 @@ if(window.location.pathname == "/"){
         var id = $(this).attr("data-id")
 
         var request = {
-            "url" : `http://localhost:3000/api/users/${id}`,
+            "url" : `http://localhost:80/api/users/${id}`,
             "method" : "DELETE"
         }
 
         if(confirm("Do you really want to delete this record?")){
             $.ajax(request).done(function(response){
-                alert("Data Deleted Successfully!");
+                alert("Patient deleted Successfully!");
                 location.reload();
             })
         }
